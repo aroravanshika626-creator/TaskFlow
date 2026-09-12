@@ -7,7 +7,6 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
 
   const username = localStorage.getItem("username") || "there";
-
   const hour = new Date().getHours();
 
   let greeting;
@@ -29,7 +28,7 @@ function Dashboard() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/tasks",
+        "https://taskflow-z53f.onrender.com/api/tasks",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -64,13 +63,11 @@ function Dashboard() {
 
   return (
     <div className="app">
-
       <Sidebar />
 
       <main className="dashboard">
 
         <div className="dashboard-header">
-
           <div>
             <p className="dashboard-label">
               OVERVIEW
@@ -84,9 +81,7 @@ function Dashboard() {
               Here's an overview of your tasks and productivity.
             </p>
           </div>
-
         </div>
-
 
         <div className="dashboard-cards">
 
@@ -110,7 +105,6 @@ function Dashboard() {
             </p>
           </div>
 
-
           <div className="card">
             <div className="card-top">
               <span className="card-label">
@@ -130,7 +124,6 @@ function Dashboard() {
               Finished tasks
             </p>
           </div>
-
 
           <div className="card">
             <div className="card-top">
@@ -154,7 +147,6 @@ function Dashboard() {
 
         </div>
 
-
         <section className="recent-section">
 
           <div className="section-header">
@@ -176,7 +168,6 @@ function Dashboard() {
             </Link>
 
           </div>
-
 
           <div className="recent-list">
 
@@ -230,7 +221,6 @@ function Dashboard() {
         </section>
 
       </main>
-
     </div>
   );
 }

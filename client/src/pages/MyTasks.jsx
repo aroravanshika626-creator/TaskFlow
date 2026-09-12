@@ -16,11 +16,14 @@ function MyTasks() {
 
   async function fetchTasks() {
     try {
-      const response = await fetch("http://localhost:5000/api/tasks", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        "https://taskflow-z53f.onrender.com/api/tasks",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const data = await response.json();
 
@@ -30,7 +33,6 @@ function MyTasks() {
       }
 
       setTasks(data);
-
     } catch (error) {
       console.error("Error fetching tasks:", error);
     } finally {
@@ -49,7 +51,7 @@ function MyTasks() {
       // UPDATE
       if (editId) {
         const response = await fetch(
-          `http://localhost:5000/api/tasks/${editId}`,
+          `https://taskflow-z53f.onrender.com/api/tasks/${editId}`,
           {
             method: "PUT",
             headers: {
@@ -59,9 +61,9 @@ function MyTasks() {
             body: JSON.stringify({
               title: task,
               description: "",
-              completed: tasks.find(
-                (item) => item._id === editId
-              )?.completed || false,
+              completed:
+                tasks.find((item) => item._id === editId)?.completed ||
+                false,
             }),
           }
         );
@@ -87,7 +89,7 @@ function MyTasks() {
 
       // CREATE
       const response = await fetch(
-        "http://localhost:5000/api/tasks",
+        "https://taskflow-z53f.onrender.com/api/tasks",
         {
           method: "POST",
           headers: {
@@ -110,7 +112,6 @@ function MyTasks() {
 
       setTasks([data.task, ...tasks]);
       setTask("");
-
     } catch (error) {
       console.error("Error saving task:", error);
       alert("Unable to connect to server");
@@ -133,7 +134,7 @@ function MyTasks() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/tasks/${id}`,
+        `https://taskflow-z53f.onrender.com/api/tasks/${id}`,
         {
           method: "PUT",
           headers: {
@@ -160,7 +161,6 @@ function MyTasks() {
           item._id === id ? data.task : item
         )
       );
-
     } catch (error) {
       console.error("Error updating task:", error);
     }
@@ -170,7 +170,7 @@ function MyTasks() {
   async function deleteTask(id) {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/tasks/${id}`,
+        `https://taskflow-z53f.onrender.com/api/tasks/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -189,7 +189,6 @@ function MyTasks() {
       setTasks(
         tasks.filter((item) => item._id !== id)
       );
-
     } catch (error) {
       console.error("Error deleting task:", error);
     }
@@ -197,11 +196,9 @@ function MyTasks() {
 
   return (
     <div className="app">
-
       <Sidebar />
 
       <main className="dashboard">
-
         <h1>My Tasks</h1>
 
         <p>
@@ -209,7 +206,6 @@ function MyTasks() {
         </p>
 
         <div className="add-task">
-
           <input
             type="text"
             placeholder="Enter task..."
@@ -220,28 +216,19 @@ function MyTasks() {
           <button onClick={addTask}>
             {editId ? "Update Task" : "Add Task"}
           </button>
-
         </div>
 
         <div className="task-list">
-
           {loading ? (
-
             <p>Loading tasks...</p>
-
           ) : tasks.length === 0 ? (
-
             <p>No tasks added yet.</p>
-
           ) : (
-
             tasks.map((item) => (
-
               <div
                 className="task-item"
                 key={item._id}
               >
-
                 <input
                   type="checkbox"
                   checked={item.completed}
@@ -267,17 +254,11 @@ function MyTasks() {
                 >
                   Delete
                 </button>
-
               </div>
-
             ))
-
           )}
-
         </div>
-
       </main>
-
     </div>
   );
 }
