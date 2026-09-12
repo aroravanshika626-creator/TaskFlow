@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 
 const User = require("./models/User");
 const Task = require("./models/Task");
-const authMiddleware = require("./middleware/authMiddleware");
+const authMiddleware = require("./middleware/authMiddleWare");
 
 const app = express();
 
