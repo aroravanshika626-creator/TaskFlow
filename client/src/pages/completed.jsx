@@ -14,7 +14,7 @@ function Completed() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/tasks",
+        "https://taskflow-z53f.onrender.com/api/tasks",
         {
           headers: {
             Authorization: `Bearer ${token}`,

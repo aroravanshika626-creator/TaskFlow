@@ -3,6 +3,8 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+require("dns").setServers(["8.8.8.8", "8.8.4.4"]);
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
